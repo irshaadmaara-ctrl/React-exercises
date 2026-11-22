@@ -1,0 +1,148 @@
+.app {
+  width: min(100% - 32px, 760px);
+  margin: 28px auto;
+}
+
+.app h1,
+.app h2 {
+  color: #111;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.app h1 {
+  margin: 0 0 24px;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.app h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+}
+
+.form-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.form-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.form-fields input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid #999;
+  border-radius: 2px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+}
+
+.form-fields input[aria-invalid='true'] {
+  border-color: #b42318;
+}
+
+.field-error {
+  color: #b42318;
+  font-size: 12px;
+}
+
+.form-actions,
+.contact-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.form-actions {
+  margin-top: 12px;
+}
+
+.app button {
+  padding: 5px 11px;
+  border: 1px solid #222;
+  border-radius: 2px;
+  background: #222;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.app button:hover {
+  background: #444;
+}
+
+.app button:focus-visible,
+.form-fields input:focus-visible {
+  outline: 2px solid #2557a7;
+  outline-offset: 2px;
+}
+
+.app .secondary-button {
+  border-color: #888;
+  background: #fff;
+  color: #222;
+}
+
+.app .secondary-button:hover {
+  background: #f2f2f2;
+}
+
+.contacts-section {
+  margin-top: 30px;
+}
+
+.contacts-section > p {
+  margin: 0;
+}
+
+.contact-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 18px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-actions {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 620px) {
+  .app {
+    margin-top: 20px;
+  }
+
+  .form-fields {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .contact-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
