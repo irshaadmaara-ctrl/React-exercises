@@ -1,0 +1,161 @@
+.page {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 82px 16px 24px;
+}
+
+.application-card {
+  width: 328px;
+  max-width: 100%;
+  padding: 13px 23px 22px;
+  border: 1px solid #e8e8e8;
+  border-radius: 0 0 10px 10px;
+  background: #fff;
+  box-shadow: 0 5px 12px rgb(0 0 0 / 12%);
+}
+
+.application-card h1 {
+  margin: 0 0 23px;
+  color: #252525;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.field-group {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 17px;
+}
+
+.field-group > label,
+.skills-group legend {
+  padding: 0;
+  color: #555;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.field-group input,
+.field-group select {
+  width: 100%;
+  height: 29px;
+  padding: 4px 9px;
+  border: 1px solid #d5d5d5;
+  border-radius: 7px;
+  outline: none;
+  background: #fff;
+  color: #292929;
+  font: inherit;
+  font-size: 11px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  border-color: #7489ee;
+  box-shadow: 0 0 0 2px rgb(87 111 226 / 16%);
+}
+
+.field-group input[aria-invalid='true'],
+.field-group select[aria-invalid='true'] {
+  border-color: #ec6060;
+}
+
+.field-error {
+  margin: 0;
+  color: #bb3030;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.skills-group {
+  min-width: 0;
+  margin: 0 0 20px;
+  padding: 0;
+  border: 0;
+}
+
+.skills-group legend {
+  margin-bottom: 8px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+}
+
+.checkbox-option {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 5px;
+  color: #555;
+  font-size: 10px;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.checkbox-option input {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+  margin: 0;
+  accent-color: #ce3045;
+}
+
+.skills-grid + .field-error {
+  margin-top: 7px;
+}
+
+.consent-group {
+  margin-bottom: 20px;
+}
+
+.consent-group .field-error {
+  margin-top: 8px;
+}
+
+.notifications-option {
+  margin-bottom: 17px;
+}
+
+.submit-button {
+  width: 100%;
+  height: 28px;
+  border: 0;
+  border-radius: 6px;
+  background: #ce3045;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  transition: background-color 150ms ease;
+}
+
+.submit-button:hover {
+  background: #b92539;
+}
+
+.submit-button:focus-visible {
+  outline: 2px solid #ce3045;
+  outline-offset: 2px;
+}
+
+.success-message {
+  margin: 10px 0 0;
+  color: #21804a;
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .page {
+    padding-top: 24px;
+  }
+}
