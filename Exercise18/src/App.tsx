@@ -6,9 +6,10 @@ type Contact = {
   name: string
   email: string
   phone: string
+  favorite: boolean
 }
 
-type ContactFields = Omit<Contact, 'id'>
+type ContactFields = Pick<Contact, 'name' | 'email' | 'phone'>
 type FieldErrors = Partial<Record<keyof ContactFields, string>>
 
 const emptyFields: ContactFields = { name: '', email: '', phone: '' }
@@ -57,13 +58,23 @@ function App() {
     }
 
     if (editingId !== null) {
+      const previousContact = contacts.find((contact) => contact.id === editingId)
+      const updatedContact = previousContact
+        ? { ...previousContact, ...contactFields }
+        : { id: editingId, ...contactFields, favorite: false }
+      console.log(
+        'Contact updated:',
+        JSON.stringify({ before: previousContact, after: updatedContact }),
+      )
       setContacts((current) =>
         current.map((contact) =>
           contact.id === editingId ? { ...contact, ...contactFields } : contact,
         ),
       )
     } else {
-      setContacts((current) => [...current, { id: nextId, ...contactFields }])
+      const newContact = { id: nextId, ...contactFields, favorite: false }
+      console.log('Contact added:', newContact)
+      setContacts((current) => [...current, newContact])
       setNextId((id) => id + 1)
     }
 
@@ -71,14 +82,28 @@ function App() {
   }
 
   function startEditing(contact: Contact) {
+    console.log('Edit contact:', contact)
     setEditingId(contact.id)
     setFields({ name: contact.name, email: contact.email, phone: contact.phone })
     setErrors({})
   }
 
   function deleteContact(id: number) {
+    const contact = contacts.find((item) => item.id === id)
+    if (contact) console.log('Contact deleted:', contact)
     setContacts((current) => current.filter((contact) => contact.id !== id))
     if (editingId === id) resetForm()
+  }
+
+  function toggleFavorite(id: number) {
+    const contact = contacts.find((item) => item.id === id)
+    if (!contact) return
+
+    const updatedContact = { ...contact, favorite: !contact.favorite }
+    console.log('Contact favorite toggled:', updatedContact)
+    setContacts((current) =>
+      current.map((item) => (item.id === id ? updatedContact : item)),
+    )
   }
 
   function updateField(field: keyof ContactFields, value: string) {
@@ -95,7 +120,7 @@ function App() {
         <form onSubmit={handleSubmit} noValidate>
           <div className="form-fields">
             <label>
-              <span>Name</span>
+              Name:{' '}
               <input
                 autoComplete="name"
                 value={fields.name}
@@ -105,8 +130,9 @@ function App() {
               />
               {errors.name && <span className="field-error" id="name-error">{errors.name}</span>}
             </label>
+            <br />
             <label>
-              <span>Email</span>
+              Email:{' '}
               <input
                 type="email"
                 autoComplete="email"
@@ -117,8 +143,9 @@ function App() {
               />
               {errors.email && <span className="field-error" id="email-error">{errors.email}</span>}
             </label>
+            <br />
             <label>
-              <span>Phone</span>
+              Phone:{' '}
               <input
                 type="tel"
                 autoComplete="tel"
@@ -129,6 +156,7 @@ function App() {
               />
               {errors.phone && <span className="field-error" id="phone-error">{errors.phone}</span>}
             </label>
+            <br />
           </div>
           <div className="form-actions">
             <button type="submit">{editingId === null ? 'Add' : 'Update'}</button>
@@ -151,13 +179,22 @@ function App() {
               <li className="contact-row" key={contact.id}>
                 <div className="contact-details">
                   <strong>{contact.name}</strong>
-                  <span>{contact.email}</span>
-                  <span>{contact.phone}</span>
+                  <br />
+                  Email: {contact.email}
+                  <br />
+                  Phone: {contact.phone}
                 </div>
                 <div className="contact-actions">
+                  <button
+                    type="button"
+                    aria-pressed={contact.favorite}
+                    onClick={() => toggleFavorite(contact.id)}
+                  >
+                    {contact.favorite ? 'Unfavorite' : 'Favorite'}
+                  </button>{' '}
                   <button type="button" onClick={() => startEditing(contact)}>
                     Edit
-                  </button>
+                  </button>{' '}
                   <button
                     className="secondary-button"
                     type="button"
