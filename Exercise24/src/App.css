@@ -1,0 +1,117 @@
+.registration-page {
+  min-height: 100vh;
+  padding: 36px 16px;
+  background: #fff;
+}
+
+.registration-card {
+  width: min(100%, 420px);
+  margin: 0 auto;
+  padding: 20px 22px 22px;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
+}
+
+.registration-card h1 {
+  margin: 0 0 21px;
+  color: #111;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.field-group {
+  margin-bottom: 13px;
+}
+
+.field-group > label,
+.subjects-field legend {
+  display: block;
+  margin-bottom: 5px;
+  color: #222;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field-group input,
+.field-group select {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #8a8a8a;
+  border-radius: 4px;
+  padding: 6px 8px;
+  color: #222;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  outline: 2px solid rgb(48 112 211 / 25%);
+  border-color: #3974c6;
+}
+
+.field-group input[aria-invalid='true'] {
+  border-color: #c93636;
+  background: #fffafa;
+}
+
+.subjects-field {
+  margin: 15px 0 14px;
+  border: 0;
+  padding: 0;
+}
+
+.subjects-field legend {
+  padding: 0;
+}
+
+.subject-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subject-option {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #222;
+  font-size: 14px;
+}
+
+.subject-option input {
+  width: 13px;
+  height: 13px;
+  margin: 0;
+}
+
+.field-error {
+  margin: 7px 0 0;
+  color: #c93636;
+  font-size: 12px;
+}
+
+.register-button {
+  width: 100%;
+  min-height: 38px;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  background: #e23e54;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background: #cc3047;
+}
+
+.success-message {
+  margin: 12px 0 0;
+  color: #217541;
+  font-size: 13px;
+}
