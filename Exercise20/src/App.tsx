@@ -82,20 +82,21 @@ function App() {
     setSecondsLeft(secondsRef.current)
   }
 
-  const completedCount = tasks.filter((task) => task.completed).length
   const formattedTime = `${String(Math.floor(secondsLeft / 60)).padStart(2, '0')}:${String(secondsLeft % 60).padStart(2, '0')}`
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell${view === 'todo' ? ' todo-view' : ''}`}>
       <div className="ambient ambient-one" aria-hidden="true" />
       <div className="ambient ambient-two" aria-hidden="true" />
 
-      <header className="page-heading">
-        <div className="brand-mark" aria-hidden="true">✦</div>
-        <p className="eyebrow">A LITTLE MORE FOCUS</p>
-        <h1>Make today count.</h1>
-        <p className="intro">Small steps, one task at a time.</p>
-      </header>
+      {view === 'timer' && (
+        <header className="page-heading">
+          <div className="brand-mark" aria-hidden="true">✦</div>
+          <p className="eyebrow">A LITTLE MORE FOCUS</p>
+          <h1>Make today count.</h1>
+          <p className="intro">Small steps, one task at a time.</p>
+        </header>
+      )}
 
       <section className="workspace" aria-label="Productivity tools">
         <nav className="tabs" aria-label="Choose a tool">
@@ -121,30 +122,19 @@ function App() {
 
         {view === 'todo' ? (
           <section className="card todo-card" aria-labelledby="todo-title">
-            <div className="card-heading">
-              <div>
-                <p className="section-label">YOUR SPACE</p>
-                <h2 id="todo-title">My Todo List</h2>
-                <p className="card-subtitle">A clear mind starts with a clear list.</p>
-              </div>
-              <div className="task-count" aria-label={`${completedCount} of ${tasks.length} tasks complete`}>
-                <span>{String(completedCount).padStart(2, '0')}</span>
-                <span className="count-divider">/</span>
-                <span className="count-total">{String(tasks.length).padStart(2, '0')}</span>
-              </div>
-            </div>
+            <h2 id="todo-title" className="todo-title">My Todo List</h2>
 
             <form className="add-task-form" onSubmit={addTask}>
               <label className="visually-hidden" htmlFor="new-task">Add a task</label>
               <input
                 id="new-task"
                 type="text"
-                placeholder="What needs to get done?"
+                placeholder="Add a new todo..."
                 value={newTask}
                 onChange={(event) => setNewTask(event.target.value)}
               />
               <button type="submit" className="add-button">
-                <span aria-hidden="true">+</span> Add
+                Add
               </button>
             </form>
 
@@ -177,10 +167,6 @@ function App() {
               )}
             </ul>
 
-            <footer className="list-footer">
-              <span><span className="status-dot" /> YOU’VE GOT THIS</span>
-              <span>{tasks.length - completedCount} left to do</span>
-            </footer>
           </section>
         ) : (
           <section className="card timer-card" aria-labelledby="timer-title">
@@ -235,10 +221,12 @@ function App() {
         )}
       </section>
 
-      <footer className="page-footer">
-        <span>MADE FOR YOUR MOMENT OF FOCUS</span>
-        <span className="footer-flower" aria-hidden="true">✳</span>
-      </footer>
+      {view === 'timer' && (
+        <footer className="page-footer">
+          <span>MADE FOR YOUR MOMENT OF FOCUS</span>
+          <span className="footer-flower" aria-hidden="true">✳</span>
+        </footer>
+      )}
     </main>
   )
 }
